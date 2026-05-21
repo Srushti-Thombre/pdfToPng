@@ -1,7 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import PdfMerge from "./pages/PdfMerge";
+import PdfSign from "./pages/PdfSign";
 import Layout from "./components/Layout/Layout";
 import LandingPage from "./pages/LandingPage";
+import ImagePdf from "./pages/ImagePdf";
 import PdfPng from "./pages/PdfPng";
 import ImageWebp from "./pages/ImageWbp";
 import ImageJpg from "./pages/ImageJpg";
@@ -34,7 +37,14 @@ function App() {
         <Route path="/image-upscale" element={<ImageUpscale />} />
         <Route path="/image-dpi" element={<ImageDpi />} />
         <Route path="/image-metadata" element={<ImageMetadata />} />
+ feature/pdf-tools
+        <Route path="/image-to-pdf" element={<ImagePdf />} />
+        <Route path="/pdf-merge" element={<PdfMerge />} />
+        <Route path="/pdf-sign" element={<PdfSign />} />
+        <Route path="/pdf-sign" element={<div>PDF SIGN TEST PAGE</div>} />
+
         <Route path="/image-to-base64" element={<ImageBase64 />} />
+ main
       </Route>
     </Routes>
   );
