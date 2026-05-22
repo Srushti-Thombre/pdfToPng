@@ -14,6 +14,7 @@ import ImageDpi from "./pages/ImageDpi";
 import ImageGrayScale from "./pages/ImageGrayScale";
 import ImageMetadata from "./pages/ImageMetadata";
 import ImageBase64 from "./pages/ImageBase64";
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/image-dpi" element={<ImageDpi />} />
         <Route path="/image-metadata" element={<ImageMetadata />} />
         <Route path="/image-to-base64" element={<ImageBase64 />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );
