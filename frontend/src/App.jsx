@@ -6,6 +6,7 @@ import ScrollToTop from "./components/ScrollToTop";
 
 
 import PdfMerge from "./pages/PdfMerge";
+import PdfSplit from "./pages/PdfSplit";
 import PdfSign from "./pages/PdfSign";
 import Layout from "./components/Layout/Layout";
 import LandingPage from "./pages/LandingPage";
@@ -41,6 +42,7 @@ function App() {
           <Route path="/pdf-to-word" element={<PdfDocx />} />
           <Route path="/image-to-pdf" element={<ImagePdf />} />
           <Route path="/pdf-merge" element={<PdfMerge />} />
+          <Route path="/pdf-split" element={<PdfSplit />} />
           <Route path="/pdf-sign" element={<PdfSign />} />
           
           <Route path="/image-to-webp" element={<ImageWebp />} />

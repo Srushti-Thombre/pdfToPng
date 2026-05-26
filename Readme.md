@@ -3,6 +3,8 @@
 This project is a small full‑stack web app for doing simple, local file manipulations:
 
 - Convert PDF pages to PNG (single page, range, or all pages)
+- Merge multiple PDF files into one document
+- Split a PDF by extracting a page range into a new document
 - Convert images to WebP
 - Convert images to JPG
 - Compress images with adjustable quality
@@ -54,6 +56,8 @@ pdfToPng/
 │   │   ├── rotate_flip.py
 |   |   ├── metadata_viewer.py 
 |   |   └── dpi_converter.py
+|   |   ├── merge_pdf.py
+|   |   └── split_pdf.py
 │   └── utils/
 │       ├── __init__.py
 │       └── helpers.py
@@ -105,6 +109,8 @@ pdfToPng/
   - `metadata_viewer.py` – View and strip metadata endpoint
   - `removebg.py` – Background removal endpoint
   - `rotate_flip.py` – Rotate/flip endpoint
+  - `merge_pdf.py` – Merge multiple PDFs into one endpoint
+  - `split_pdf.py` – Split PDF by page range endpoint
 - `utils/` – Helper functions and utilities used across blueprints
 
 **Frontend** (`frontend/`)
@@ -122,6 +128,8 @@ pdfToPng/
   - `pages/` – Page components for each feature:
     - `LandingPage.jsx` – Main landing page
     - `PdfPng.jsx` – PDF to PNG converter page
+    - `PdfMerge.jsx` – PDF merge page
+    - `PdfSplit.jsx` – PDF split page
     - `ImageWbp.jsx` – Image to WebP converter page
     - `ImageJpg.jsx` – Image to JPG converter page
     - `ImageCompress.jsx` – Image compression page
@@ -159,6 +167,8 @@ The Flask server will run at `http://localhost:5000`.
 Available endpoints:
 
 - `POST /convertPng` – Convert first page of a PDF to PNG
+- `POST /merge-pdf` – Merge multiple PDFs into one
+- `POST /split-pdf` – Extract a page range from a PDF
 - `POST /convertWebP` – Convert an image to WebP
 - `POST /removeBg` – Remove the background from an image
 - `POST /convertJpeg` – Convert an image to JPG

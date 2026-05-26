@@ -45,6 +45,15 @@ const tools = [
     iconGradient: "from-emerald-500 to-teal-500",
   },
   {
+    id: "pdf-split",
+    name: "PDF Split",
+    icon: <FileText />,
+    description: "Extract a page range from a PDF into a new document.",
+    path: "/pdf-split",
+    gradient: "from-sky-500/10 to-cyan-500/10",
+    iconGradient: "from-sky-500 to-cyan-500",
+  },
+  {
     id: "pdf-sign",
     name: "PDF Sign",
     icon: <PenTool />,
