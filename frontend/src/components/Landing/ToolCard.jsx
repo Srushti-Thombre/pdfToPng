@@ -432,7 +432,7 @@ const toolAnimations = {
         <div className="absolute inset-0 group-hover:scale-x-[-1] transition-all duration-500">
           <div className="absolute top-[7px] left-[4px] right-[4px] h-[1.5px] rounded-full bg-[#D85A30] opacity-70" />
           <div className="absolute top-[13px] left-[4px] right-[8px] h-[1.5px] rounded-full bg-[#D85A30] opacity-45" />
-          <div className="absolute top-[19px] left-[4px] right-[6px] h-[1.5px] rounded-full bg-[#D85A30] opacity-30" />
+          <div className="absolute top-[19px] left-1 right-[6px] h-[1.5px] rounded-full bg-[#D85A30] opacity-30" />
 
           <span className="absolute bottom-[5px] left-1/2 -translate-x-1/2 text-[6px] font-bold text-[#D85A30]">
             PDF
@@ -555,10 +555,7 @@ const toolAnimations = {
   "image-watermark": imageWatermarkAnimation,
   "image-blur": (
     <div className="tc-scene tc-blur-scene flex items-center justify-center">
-      <div className="tc-blur-image w-[54px] h-[40px] rounded-[8px] bg-[#E6F1FB] border border-[#85B7EB] flex items-center justify-center">
-  "image-blur": (
-    <div className="tc-scene tc-blur-scene flex items-center justify-center">
-      <div className="tc-blur-image w-[54px] h-[40px] rounded-[8px] bg-[#E6F1FB] border border-[#85B7EB] flex items-center justify-center" >
+      <div className="tc-blur-image w-[54px] h-10 rounded-lg bg-[#E6F1FB] border border-[#85B7EB] flex items-center justify-center">
         <Image />
       </div>
     </div>
@@ -574,7 +571,7 @@ const ToolCard = ({ tool, index }) => (
     <div
       className={`absolute inset-0 rounded-2xl bg-linear-to-br ${tool.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`}
     />
-    <div className="w-full h-[80px] flex items-center justify-center mb-6 relative">
+    <div className="w-full h-20 flex items-center justify-center mb-6 relative">
       {toolAnimations[tool.id] ?? (
         <div
           className={`w-14 h-14 rounded-xl bg-linear-to-br ${tool.iconGradient} p-px tc-icon-float`}
