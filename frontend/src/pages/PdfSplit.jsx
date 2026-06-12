@@ -174,13 +174,24 @@ function PdfSplit() {
   };
 
   return (
-    <div className="w-full max-w-[1100px] mx-auto p-6 md:p-10 text-center flex flex-col items-center bg-gradient-to-br from-gray-50 to-white rounded-3xl shadow-xl border border-gray-200 overflow-hidden">
-      <Toaster position="top-right" richColors />
+    <div className="w-full max-w-[600px] mx-auto p-10 text-center flex flex-col justify-center items-center bg-gradient-to-br from-[#f6f8fa] to-white dark:from-[#0f172a] dark:to-[#111827] dark:border dark:border-slate-700 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] overflow-hidden">
 
-      <motion.h1
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="mb-4 text-[#1a1a2e] text-5xl font-extrabold tracking-tight"
+      {/* Title — matches ToolPageTemplate exactly */}
+      <h1 className="mb-10 text-[#1a1a2e] dark:text-white text-5xl font-bold tracking-tight relative inline-block after:content-[''] after:absolute after:w-[60px] after:h-1 after:bg-gradient-to-r after:from-[#4361ee] after:to-[#7209b7] after:-bottom-2.5 after:left-1/2 after:-translate-x-1/2 after:rounded-sm">
+        Split PDF
+      </h1>
+
+      {/* Drop Zone */}
+      <div
+        className={`w-full border-2 border-dashed rounded-xl p-8 flex flex-col items-center gap-2 cursor-pointer transition-all duration-200 mb-6 ${
+          isDragging
+            ? "border-[#4361ee] bg-blue-50 dark:bg-slate-800 scale-[1.02]"
+            : "border-gray-300 bg-[#fafbfc] dark:bg-slate-900 dark:border-slate-700 hover:border-[#4361ee] hover:bg-blue-50"
+        }`}
+        onDrop={onDrop}
+        onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
+        onDragLeave={() => setIsDragging(false)}
+        onClick={() => !file && inputRef.current?.click()}
       >
         Split PDF
       </motion.h1>
@@ -354,12 +365,25 @@ function PdfSplit() {
               disabled={!file || isLoading}
               className="w-full bg-gradient-to-r from-[#4361ee] to-[#3b82f6] text-white py-4 rounded-2xl font-bold shadow-lg hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
             >
-              {isLoading ? (
-                <RefreshCcw size={20} className="animate-spin" />
-              ) : (
-                "Split PDF Now"
-              )}
-            </button>
+              <path
+                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <polyline points="14,2 14,8 20,8" strokeLinecap="round" strokeLinejoin="round" />
+              <line x1="12" y1="18" x2="12" y2="12" strokeLinecap="round" />
+              <line x1="9" y1="15" x2="15" y2="15" strokeLinecap="round" />
+            </svg>
+            <p className="text-[#1a1a2e] dark:text-white font-semibold text-lg">
+              {isDragging ? "Drop your PDF here" : "Choose a PDF file or drag & drop here"}
+            </p>
+            <p className="text-gray-400 dark:text-slate-400 text-sm">Single PDF · Pages will be detected automatically</p>
+            <span className="mt-2 text-xs bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-slate-300 rounded-full px-3 py-1 font-medium">
+              PDF only
+            </span>
+          </>
+        )}
+      </div>
 
             {resultUrl && !isLoading && (
               <motion.div
