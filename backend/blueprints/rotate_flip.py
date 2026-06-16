@@ -45,8 +45,7 @@ def rotate_flip(img, filename, file_bytes):
         ext  = "jpg"        if fmt == "JPEG" else fmt.lower()
         
         return send_file(output, mimetype=mime,
-                         download_name=f"transformed.{ext}")
-    
+                   download_name=f"transformed.{ext}")
     finally:
         # Clean up buffer
         if output:
