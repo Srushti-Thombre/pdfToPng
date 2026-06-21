@@ -1,6 +1,12 @@
-import { useState, useRef, useCallback } from "react";
+﻿import { useState, useRef, useCallback, useEffect } from "react";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
-import { toastError, toastSuccess, toastLoading, toastDismiss } from "../utils/toast";
+import PdfWatermarkPreview from "../components/PdfWatermarkPreview";
+import {
+  toastError,
+  toastSuccess,
+  toastLoading,
+  toastDismiss,
+} from "../utils/toast";
 
 const POSITION_OPTIONS = [
   { value: "top-left", label: "Top Left" },
@@ -20,6 +26,7 @@ function PDFWatermark() {
   const [size, setSize] = useState(30);
   const [isDragging, setIsDragging] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [imagePreview, setImagePreview] = useState(null);
 
   const inputRef = useRef(null);
   const imageInputRef = useRef(null);
@@ -74,6 +81,7 @@ function PDFWatermark() {
 
     resetStatus();
     setWatermarkImage(imageFile);
+    setImagePreview(URL.createObjectURL(imageFile));
   };
 
   const getPosition = (pageWidth, pageHeight, itemWidth, itemHeight) => {
@@ -93,6 +101,42 @@ function PDFWatermark() {
         return { x: pageWidth - itemWidth - margin, y: margin };
     }
   };
+
+  const getPreviewPosition = () => {
+  switch (position) {
+    case "top-left":
+      return {
+        top: "20px",
+        left: "20px",
+      };
+
+    case "top-right":
+      return {
+        top: "20px",
+        right: "20px",
+      };
+
+    case "center":
+      return {
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+      };
+
+    case "bottom-left":
+      return {
+        bottom: "20px",
+        left: "20px",
+      };
+
+    case "bottom-right":
+    default:
+      return {
+        bottom: "20px",
+        right: "20px",
+      };
+  }
+};
 
   const applyWatermark = async () => {
     if (!file) {
@@ -398,7 +442,18 @@ function PDFWatermark() {
           </label>
         </div>
       </div>
-
+      
+{file && (
+  <PdfWatermarkPreview
+    file={file}
+    watermarkType={watermarkType}
+    watermarkText={watermarkText}
+    watermarkImage={watermarkImage}
+    position={position}
+    opacity={opacity}
+    size={size}
+  />
+)}
       <button
         onClick={applyWatermark}
         disabled={!file || isLoading}
